@@ -50,47 +50,43 @@
 
 :root {
   color-scheme: light;
-  /* Arkani Beauty Academy - Premium Theme */
-  /* Background: White & Cream */
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  /* Cards: Clean white with subtle beige */
-  --card: #fafafa;
-  --card-foreground: #2a2a2a;
-  /* Accents: Soft beige and cream */
-  --popover: #f9f7f3;
-  --popover-foreground: #1a1a1a;
-  /* Primary: Black for text and primary elements */
-  --primary: #1a1a1a;
-  --primary-foreground: #ffffff;
-  /* Secondary: Soft beige */
-  --secondary: #f0e6d8;
-  --secondary-foreground: #1a1a1a;
-  /* Muted: Light gray */
-  --muted: #e8e3dc;
-  --muted-foreground: #666666;
-  /* Accent: Gold (#C9A227) for luxury feel */
-  --accent: #C9A227;
+  /* Arkani Beauty Academy - Cream Brown Theme */
+  --background: #FDF6EE;
+  --foreground: #2C1A0E;
+  --card: #FBF0E4;
+  --card-foreground: #2C1A0E;
+  --popover: #F9EDE0;
+  --popover-foreground: #2C1A0E;
+  /* Primary: warm brown for buttons */
+  --primary: #7D4E24;
+  --primary-foreground: #FDF6EE;
+  /* Secondary: soft warm beige for section backgrounds */
+  --secondary: #F2E4D0;
+  --secondary-foreground: #2C1A0E;
+  /* Muted tones */
+  --muted: #E8D5BE;
+  --muted-foreground: #7A5C3E;
+  /* Accent: warm brown (used for buttons, highlights, dividers) */
+  --accent: #7D4E24;
   --accent-foreground: #ffffff;
-  /* Destructive: Red for errors */
   --destructive: #d64646;
-  --border: #e0d9d0;
-  --input: #f5f3f0;
-  --ring: #C9A227;
-  --chart-1: #C9A227;
-  --chart-2: #f0e6d8;
-  --chart-3: #d4c4b0;
-  --chart-4: #b8a892;
-  --chart-5: #9c8c74;
+  --border: #D4B896;
+  --input: #F5EBE0;
+  --ring: #7D4E24;
+  --chart-1: #7D4E24;
+  --chart-2: #A0713A;
+  --chart-3: #C49A6C;
+  --chart-4: #DFC4A0;
+  --chart-5: #F2E4D0;
   --radius: 0.875rem;
-  --sidebar: #f9f7f3;
-  --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #1a1a1a;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #C9A227;
+  --sidebar: #F9EDE0;
+  --sidebar-foreground: #2C1A0E;
+  --sidebar-primary: #7D4E24;
+  --sidebar-primary-foreground: #FDF6EE;
+  --sidebar-accent: #7D4E24;
   --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #e0d9d0;
-  --sidebar-ring: #C9A227;
+  --sidebar-border: #D4B896;
+  --sidebar-ring: #7D4E24;
 }
 
 .dark {

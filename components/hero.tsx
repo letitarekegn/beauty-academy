@@ -6,81 +6,104 @@ import { ArrowRight } from 'lucide-react'
 
 export function Hero() {
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage:
-            'linear-gradient(135deg, rgba(25, 25, 25, 0.3) 0%, rgba(201, 162, 39, 0.2) 100%), url("https://images.unsplash.com/photo-1596705686527-b4f11ab87f10?w=1920&q=80")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-white/10 z-0" />
+    <section className="relative min-h-screen bg-background flex items-center overflow-hidden">
 
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
-        <div className="space-y-6 animate-fade-in">
-          {/* Badge */}
-          <div className="inline-block">
-            <span className="px-4 py-2 rounded-full bg-accent/10 text-accent font-medium text-sm">
-              Welcome to Excellence
-            </span>
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
+
+          {/* ── Left: text block ── */}
+          <div className="flex flex-col justify-center space-y-8 animate-fade-in">
+
+            {/* Eyebrow */}
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-px bg-accent" />
+              <span className="text-accent text-xs font-semibold uppercase tracking-[0.2em]">
+                Premium Beauty Education
+              </span>
+            </div>
+
+            {/* Headline */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold text-foreground leading-[1.05] tracking-tight">
+              Become a<br />
+              <span className="text-accent italic">Beauty</span><br />
+              Expert
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-muted-foreground text-lg leading-relaxed max-w-md">
+              Master Makeup, Hair Styling, and Nail Art — then build a thriving career with Arkani Beauty Academy.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                asChild
+                className="bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-6 text-base rounded-full shadow-md shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.03] transition-all duration-300"
+              >
+                <Link href="#register" className="flex items-center gap-2">
+                  Register Now <ArrowRight size={18} />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="border-2 border-foreground/20 text-foreground hover:bg-foreground/5 font-semibold px-8 py-6 text-base rounded-full transition-all duration-300"
+              >
+                <Link href="#courses">Explore Courses</Link>
+              </Button>
+            </div>
+
+            {/* Stats row */}
+            <div className="flex gap-8 pt-4 border-t border-border">
+              <div>
+                <p className="text-2xl font-bold text-foreground">500+</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mt-0.5">Graduates</p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">10+</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mt-0.5">Years</p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-foreground">4.9 ★</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mt-0.5">Rating</p>
+              </div>
+            </div>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold text-foreground leading-tight">
-            Become a Professional Beauty Expert
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed font-light">
-            Master Makeup, Hair Styling, Nail Art, and Build a Successful Beauty Career with Arkani Beauty Academy
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-            <Button
-              asChild
-              className="bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all"
-            >
-              <Link href="#register" className="flex items-center gap-2">
-                Register Now
-                <ArrowRight size={20} />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              className="border-2 border-foreground hover:bg-foreground/5 text-foreground font-semibold px-8 py-6 text-lg rounded-full"
-            >
-              <Link href="#courses">Explore Courses</Link>
-            </Button>
+          {/* ── Right: image — same height as the text column ── */}
+          <div className="relative rounded-3xl overflow-hidden min-h-[420px] lg:min-h-0">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: 'url("/women2hero.jpg")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center top',
+              }}
+            />
+            {/* Warm tint — keeps it bright */}
+            <div className="absolute inset-0 bg-accent/8 rounded-3xl" />
           </div>
+
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-sm font-medium text-foreground/60">Scroll to explore</span>
-          <svg
-            className="w-6 h-6 text-accent"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </div>
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 animate-bounce flex flex-col items-center gap-2">
+        <span
+          className="text-xs font-medium text-accent"
+          style={{ textShadow: '0 0 8px rgba(125,78,36,0.5), 0 0 20px rgba(125,78,36,0.3)' }}
+        >
+          Scroll to explore
+        </span>
+        <svg
+          className="w-5 h-5 text-accent"
+          style={{ filter: 'drop-shadow(0 0 5px rgba(125,78,36,0.7))' }}
+          fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
       </div>
+
     </section>
   )
 }

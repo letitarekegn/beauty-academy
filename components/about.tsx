@@ -1,29 +1,31 @@
 'use client'
 
+import Image from 'next/image'
+
 const trainers = [
   {
     name: 'Maria Garcia',
     role: 'Makeup Specialist',
     bio: '15+ years in professional makeup with international recognition',
-    image: '💄',
+    image: '/expert1.jpg',
   },
   {
     name: 'Sophie Laurent',
     role: 'Hair Expert',
     bio: 'Certified colorist and styling expert with celebrity clientele',
-    image: '💇‍♀️',
+    image: '/expert2.jpg',
   },
   {
     name: 'Jessica Chen',
     role: 'Nail Technician',
     bio: 'Master nail artist and business mentor for beauty professionals',
-    image: '💅',
+    image: '/expert3.jpg',
   },
   {
     name: 'Amanda Stone',
     role: 'Business Coach',
     bio: 'Helps graduates build successful independent beauty businesses',
-    image: '👩‍💼',
+    image: '/expert4.jpg',
   },
 ]
 
@@ -149,16 +151,27 @@ export function About() {
           <h3 className="text-3xl font-serif font-bold text-foreground mb-12 text-center">
             Meet Our Expert Trainers
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {trainers.map((trainer, index) => (
               <div
                 key={index}
-                className="text-center p-6 rounded-xl bg-secondary/30 border border-border hover:border-accent transition-all duration-300 hover:-translate-y-1"
+                className="relative rounded-2xl overflow-hidden shadow-md hover:-translate-y-2 transition-transform duration-300 group"
               >
-                <div className="text-6xl mb-4">{trainer.image}</div>
-                <h4 className="text-xl font-bold text-foreground mb-2">{trainer.name}</h4>
-                <p className="text-accent font-semibold mb-3">{trainer.role}</p>
-                <p className="text-gray-600 text-sm leading-relaxed">{trainer.bio}</p>
+                {/* Full-bleed portrait image */}
+                <div className="relative aspect-[3/4] w-full">
+                  <Image
+                    src={trainer.image}
+                    alt={trainer.name}
+                    fill
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Floating name / role label */}
+                <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-3 shadow-sm">
+                  <h4 className="font-bold text-foreground text-base leading-tight">{trainer.name}</h4>
+                  <p className="text-gray-500 text-sm mt-0.5">{trainer.role}</p>
+                </div>
               </div>
             ))}
           </div>
