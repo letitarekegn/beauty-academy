@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { Sparkles } from 'lucide-react'
 
 const courses = [
@@ -103,16 +104,18 @@ export function Courses() {
                 </div>
 
                 {/* Register Button */}
-                <Button
-                  asChild
-                  className={`w-full font-semibold rounded-full py-6 transition-all ${
+                <Link
+                  href="#register"
+                  className={cn(
+                    buttonVariants(),
+                    'w-full font-semibold rounded-full py-6 transition-all',
                     course.featured
                       ? 'bg-accent hover:bg-accent/90 text-white'
                       : 'bg-white hover:bg-accent/10 text-accent border-2 border-accent'
-                  }`}
+                  )}
                 >
-                  <Link href="#register">Register for {course.name.split(' ')[0]}</Link>
-                </Button>
+                  Register for {course.name.split(' ')[0]}
+                </Link>
               </div>
             </div>
           ))}

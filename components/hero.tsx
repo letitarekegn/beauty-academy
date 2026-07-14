@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 export function Hero() {
   return (
@@ -36,21 +37,24 @@ export function Hero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                asChild
-                className="bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-6 text-base rounded-full shadow-md shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.03] transition-all duration-300"
+              <Link
+                href="#register"
+                className={cn(
+                  buttonVariants(),
+                  'bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-6 text-base rounded-full shadow-md shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.03] transition-all duration-300 flex items-center gap-2'
+                )}
               >
-                <Link href="#register" className="flex items-center gap-2">
-                  Register Now <ArrowRight size={18} />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="border-2 border-foreground/20 text-foreground hover:bg-foreground/5 font-semibold px-8 py-6 text-base rounded-full transition-all duration-300"
+                Register Now <ArrowRight size={18} />
+              </Link>
+              <Link
+                href="#courses"
+                className={cn(
+                  buttonVariants({ variant: 'outline' }),
+                  'border-2 border-foreground/20 text-foreground hover:bg-foreground/5 font-semibold px-8 py-6 text-base rounded-full transition-all duration-300'
+                )}
               >
-                <Link href="#courses">Explore Courses</Link>
-              </Button>
+                Explore Courses
+              </Link>
             </div>
 
             {/* Stats row */}

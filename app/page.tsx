@@ -11,6 +11,7 @@ import { Contact } from '@/components/contact'
 import { Footer } from '@/components/footer'
 import { BackToTop } from '@/components/back-to-top'
 
+
 export default function Page() {
   return (
     <main className="w-full bg-background">

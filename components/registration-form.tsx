@@ -1,11 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { CheckCircle } from 'lucide-react'
 
 export function RegistrationForm() {
-  const [submitted, setSubmitted] = useState(false)
+  const [toast, setToast] = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const formLoadTime = useRef(Date.now())
+  const [honeypot, setHoneypot] = useState('')
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -31,43 +35,55 @@ export function RegistrationForm() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
+
     if (!formData.agreeTerms) {
-      alert('Please agree to the terms and conditions')
+      setError('Please agree to the terms and conditions.')
       return
     }
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 5000)
-  }
 
-  if (submitted) {
-    return (
-      <section id="register" className="py-20 bg-white">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-6">
-            <div className="flex justify-center">
-              <CheckCircle size={64} className="text-accent" />
-            </div>
-            <h2 className="text-4xl font-serif font-bold text-foreground">
-              Registration Successful!
-            </h2>
-            <p className="text-lg text-gray-600">
-              Thank you for registering with Arkani Beauty Academy. We&apos;ll contact you shortly to confirm your enrollment.
-            </p>
-            <div className="bg-secondary/50 p-6 rounded-xl border border-accent/20">
-              <p className="text-gray-700">
-                Check your email at <span className="font-semibold">{formData.email}</span> for course details and next steps.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    )
+    setLoading(true)
+
+    const res = await fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        honeypot,
+        formLoadTime: formLoadTime.current,
+        ...formData,
+      }),
+    })
+
+    const json = await res.json()
+    setLoading(false)
+
+    if (!res.ok) {
+      setError(json.error ?? 'Registration failed. Please try again.')
+      return
+    }
+
+    setToast(true)
+    setFormData({
+      fullName: '', phone: '', email: '', gender: '', age: '',
+      address: '', course: 'makeup', schedule: 'morning',
+      experience: 'none', emergency: '', emergencyPhone: '',
+      source: '', notes: '', agreeTerms: false,
+    })
+    setTimeout(() => setToast(false), 4000)
   }
 
   return (
-    <section id="register" className="py-20 bg-secondary/30">
+    <section id="register" className="py-20 bg-secondary/30 relative">
+
+      {/* Toast notification */}
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-white border border-accent/30 shadow-lg rounded-2xl px-5 py-4 animate-fade-in">
+          <CheckCircle size={22} className="text-accent shrink-0" />
+          <p className="text-sm font-semibold text-foreground">Registered successfully!</p>
+        </div>
+      )}
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -82,6 +98,20 @@ export function RegistrationForm() {
 
         {/* Registration Form */}
         <form onSubmit={handleSubmit} className="bg-white p-8 rounded-2xl shadow-sm border border-border">
+          {/* Honeypot — hidden from real users, bots fill it automatically */}
+          <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input
+              type="text"
+              id="website"
+              name="website"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* Full Name */}
             <div>
@@ -177,10 +207,19 @@ export function RegistrationForm() {
                 required
                 className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               >
-                <option value="makeup">Makeup</option>
-                <option value="hair">Hair</option>
-                <option value="nails">Nails</option>
-                <option value="full">Full Package</option>
+                <optgroup label="Single">
+                  <option value="makeup">Makeup</option>
+                  <option value="hair">Hair Styling</option>
+                  <option value="nails">Nail Art</option>
+                </optgroup>
+                <optgroup label="Combination">
+                  <option value="hair-makeup">Hair &amp; Makeup</option>
+                  <option value="hair-nails">Hair &amp; Nails</option>
+                  <option value="makeup-nails">Makeup &amp; Nails</option>
+                </optgroup>
+                <optgroup label="Full">
+                  <option value="full">Full Package (All Three)</option>
+                </optgroup>
               </select>
             </div>
 
@@ -312,12 +351,20 @@ export function RegistrationForm() {
             </label>
           </div>
 
+          {/* Error message */}
+          {error && (
+            <p className="mb-4 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+              {error}
+            </p>
+          )}
+
           {/* Submit Button */}
           <Button
             type="submit"
-            className="w-full bg-accent hover:bg-accent/90 text-white font-semibold py-4 rounded-full text-lg transition-all"
+            disabled={loading}
+            className="w-full bg-accent hover:bg-accent/90 text-white font-semibold py-4 rounded-full text-lg transition-all disabled:opacity-60"
           >
-            Register Now
+            {loading ? 'Registering...' : 'Register Now'}
           </Button>
         </form>
       </div>

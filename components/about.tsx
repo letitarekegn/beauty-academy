@@ -31,117 +31,72 @@ const trainers = [
 
 export function About() {
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <h2 className="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-4">
             About Arkani Beauty Academy
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto" />
         </div>
 
-        {/* Mission, Vision, Story */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {/* Mission */}
-          <div className="bg-secondary/30 p-8 rounded-xl border border-border">
-            <div className="text-4xl mb-4">🎯</div>
-            <h3 className="text-2xl font-bold text-foreground mb-4">Our Mission</h3>
-            <p className="text-gray-700 leading-relaxed">
-              To provide world-class beauty education that empowers professionals to build successful careers and make a positive impact in the beauty industry.
-            </p>
+        {/* ── Mission ── large image left, accent image + text right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+          <div className="relative rounded-2xl overflow-hidden min-h-[480px] lg:min-h-0">
+            <Image src="/glam-makeup.avif" alt="Our Mission" fill className="object-cover object-center" />
           </div>
-
-          {/* Vision */}
-          <div className="bg-secondary/30 p-8 rounded-xl border border-border">
-            <div className="text-4xl mb-4">✨</div>
-            <h3 className="text-2xl font-bold text-foreground mb-4">Our Vision</h3>
-            <p className="text-gray-700 leading-relaxed">
-              To be the most trusted beauty academy that transforms passionate individuals into highly skilled, confident, and ethical beauty professionals.
-            </p>
-          </div>
-
-          {/* Story */}
-          <div className="bg-secondary/30 p-8 rounded-xl border border-border">
-            <div className="text-4xl mb-4">📖</div>
-            <h3 className="text-2xl font-bold text-foreground mb-4">Our Story</h3>
-            <p className="text-gray-700 leading-relaxed">
-              Founded in 2015 by beauty industry veterans, Arkani Academy has trained over 500 students and continues to set the standard for excellence in beauty education.
-            </p>
+          <div className="flex flex-col gap-6">
+            <div className="relative rounded-2xl overflow-hidden h-52">
+              <Image src="/bridal-makeup.avif" alt="Mission detail" fill className="object-cover object-center" />
+            </div>
+            <div className="bg-secondary/50 rounded-2xl p-10 flex-1 flex flex-col justify-center">
+              <h3 className="text-5xl sm:text-6xl font-serif font-bold text-foreground uppercase leading-[1] mb-6">
+                Our<br />Mission
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                To provide world-class beauty education that empowers professionals to build successful careers and make a positive impact in the beauty industry.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Why Choose Section */}
-        <div className="mb-20">
-          <h3 className="text-3xl font-serif font-bold text-foreground mb-8 text-center">
-            Why Choose Arkani?
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-accent text-white font-bold">
-                  ✓
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">Expert Instructors</h4>
-                <p className="text-gray-600">Learn from professionals with decades of industry experience</p>
-              </div>
+        {/* ── Vision ── text + accent image left, large image right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+          <div className="flex flex-col gap-6 order-2 lg:order-1">
+            <div className="relative rounded-2xl overflow-hidden h-52">
+              <Image src="/creative-styling.avif" alt="Vision detail" fill className="object-cover object-center" />
             </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-accent text-white font-bold">
-                  ✓
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">Modern Facilities</h4>
-                <p className="text-gray-600">State-of-the-art equipment and professional-grade tools</p>
-              </div>
+            <div className="bg-secondary/50 rounded-2xl p-10 flex-1 flex flex-col justify-center">
+              <h3 className="text-5xl sm:text-6xl font-serif font-bold text-foreground uppercase leading-[1] mb-6">
+                Our<br />Vision
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                To be the most trusted beauty academy that transforms passionate individuals into highly skilled, confident, and ethical beauty professionals.
+              </p>
             </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-accent text-white font-bold">
-                  ✓
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">Career Support</h4>
-                <p className="text-gray-600">Job placement assistance and business mentorship included</p>
-              </div>
+          </div>
+          <div className="relative rounded-2xl overflow-hidden min-h-[480px] lg:min-h-0 order-1 lg:order-2">
+            <Image src="/hair-styling.avif" alt="Our Vision" fill className="object-cover object-center" />
+          </div>
+        </div>
+
+        {/* ── Story ── large image left, accent image + text right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-20">
+          <div className="relative rounded-2xl overflow-hidden min-h-[480px] lg:min-h-0">
+            <Image src="/graduation-day.avif" alt="Our Story" fill className="object-cover object-center" />
+          </div>
+          <div className="flex flex-col gap-6">
+            <div className="relative rounded-2xl overflow-hidden h-52">
+              <Image src="/student-work.avif" alt="Story detail" fill className="object-cover object-center" />
             </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-accent text-white font-bold">
-                  ✓
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">Flexible Schedules</h4>
-                <p className="text-gray-600">Morning, afternoon, and weekend classes available</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-accent text-white font-bold">
-                  ✓
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">Affordable Pricing</h4>
-                <p className="text-gray-600">Flexible payment plans to fit your budget</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-accent text-white font-bold">
-                  ✓
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">Certification</h4>
-                <p className="text-gray-600">Industry-recognized certificates upon graduation</p>
-              </div>
+            <div className="bg-secondary/50 rounded-2xl p-10 flex-1 flex flex-col justify-center">
+              <h3 className="text-5xl sm:text-6xl font-serif font-bold text-foreground uppercase leading-[1] mb-6">
+                Our<br />Story
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Founded in 2015 by beauty industry veterans, Arkani Academy has trained over 500 students and continues to set the standard for excellence in beauty education.
+              </p>
             </div>
           </div>
         </div>
